@@ -2,15 +2,17 @@ var React = require('react');
 var WeatherForm = require('WeatherForm');
 var WeatherMessage = require('WeatherMessage');
 var openWeatherMap = require('openWeatherMap');
+var ErrorModal = require('ErrorModal');
 
 class Weather extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            location: "gutu",
-            temperature : 56,
-            isLoading : false
+            location: "Gutu",
+            temperature : 20,
+            isLoading : false,
+            errorMessage: undefined
         }
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -20,28 +22,34 @@ class Weather extends React.Component {
         var that = this;
 
         this.setState({
-            isLoading : true
+            isLoading : true,
+            errorMessage: undefined
         })
 
-        //debugger;
         openWeatherMap.getTemperature(location).then(function (temperatue) {
              that.setState({
                  location: location,
                  temperature : temperatue,
                  isLoading : false
              });
-        }, function (errorMessage) {
+        }, function (e) {
             that.setState({
-                isLoading : false
+                isLoading : false,
+                errorMessage: e.message
             });
-            alert(errorMessage);
         })
     }
 
     render() {
 
-        var {isLoading, temperature, location} = this.state;
+        var {isLoading, temperature, location, errorMessage} = this.state;
 
+        function renderError() {
+            if(typeof errorMessage === 'string'){
+                return (<ErrorModal/>);
+            }
+        }
+        
         function rendeMessage() {
             if(isLoading){
                 return (<div><h3 className="text-center">Fetching weather ...</h3></div>);
@@ -55,6 +63,7 @@ class Weather extends React.Component {
                 <h1 className="text-center">Get Weather</h1>
                 <WeatherForm onSearch={this.handleSearch}/>
                 {rendeMessage()}
+                {renderError()}
             </div>
         );
     }
