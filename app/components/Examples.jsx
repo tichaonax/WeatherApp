@@ -10,7 +10,7 @@ class Examples extends React.Component {
         return (
             <div>
                 <h1 className="text-center">Examples</h1>
-                <p> Try out the following locations</p>
+                <p>Try out the my home towns</p>
                 <ol>
                     <li>
                         <Link to="/?location=Gutu">Gutu, Zimbabwe</Link>
