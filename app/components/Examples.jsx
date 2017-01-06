@@ -4,7 +4,7 @@ class Examples extends React.Component {
     render() {
         return (
             <div>
-                <h2>Examples Component</h2>
+                <h2>Welcome to Examples page</h2>
             </div>
         );
     }
