@@ -22,7 +22,7 @@ class Weather extends React.Component {
     }
 
     loadGutuWeather(){
-        this.handleSearch("Gutu");
+        this.handleSearch("Gutu, Zimbabwe");
     }
 
     handleSearch(location) {
