@@ -8,7 +8,7 @@ class About extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="text-center">About</h1>
+                <h1 className="text-center page-title">About</h1>
                 <p>A simple weather application using react. I build this for The Complete React App Developer course.
                     Checkout out these resources</p>
                 <ol>

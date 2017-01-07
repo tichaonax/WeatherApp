@@ -9,7 +9,7 @@ class Examples extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="text-center">Examples</h1>
+                <h1 className="text-center page-title">Examples</h1>
                 <p>Try out the my home towns</p>
                 <ol>
                     <li>
