@@ -24,7 +24,7 @@ class Nav extends React.Component {
                 <div className="top-bar-left">
 
                     <ul className="menu">
-                        <li class="menu-text">Weather App</li>
+                        <li className="menu-text">Weather App</li>
                         <li>
                             <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Get
                                 Weather</IndexLink>
