@@ -9,39 +9,54 @@ class Weather extends React.Component {
         super(props);
 
         this.state = {
-            temperature : undefined,
-            isLoading : true,
+            temperature: undefined,
+            isLoading: true,
             errorMessage: undefined
         }
 
         this.handleSearch = this.handleSearch.bind(this);
     }
 
-    componentDidMount(){
-        this.loadGutuWeather();
+    loadData(props){
+        debugger;
+        var location = props.location.query.location;
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+        else {
+            //load my home city
+            this.handleSearch("Gutu, Zimbabwe");
+        }
     }
 
-    loadGutuWeather(){
-        this.handleSearch("Gutu, Zimbabwe");
+    componentDidMount() {
+        this.loadData(this.props);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.loadData(newProps);
     }
 
     handleSearch(location) {
         var that = this;
 
         this.setState({
-            isLoading : true,
-            errorMessage: undefined
+            isLoading: true,
+            errorMessage: undefined,
+            location: undefined,
+            temp: undefined
         })
 
         openWeatherMap.getTemperature(location).then(function (temperatue) {
-             that.setState({
-                 location: location,
-                 temperature : temperatue,
-                 isLoading : false
-             });
+            that.setState({
+                location: location,
+                temperature: temperatue,
+                isLoading: false
+            });
         }, function (e) {
             that.setState({
-                isLoading : false,
+                isLoading: false,
                 errorMessage: e.message
             });
         })
@@ -52,16 +67,16 @@ class Weather extends React.Component {
         var {isLoading, temperature, location, errorMessage} = this.state;
 
         function renderError() {
-            if(typeof errorMessage === 'string'){
+            if (typeof errorMessage === 'string') {
                 return (<ErrorModal title="Error!!!" errorMessage={errorMessage}/>);
             }
         }
-        
+
         function rendeMessage() {
-            if(isLoading){
+            if (isLoading) {
                 return (<div><h3 className="text-center">Fetching weather ...</h3></div>);
-            }else if(temperature && location){
-                return  (<WeatherMessage temperature={temperature} location={location}/>);
+            } else if (temperature && location) {
+                return (<WeatherMessage temperature={temperature} location={location}/>);
             }
         }
 
