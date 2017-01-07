@@ -22,7 +22,7 @@ class Weather extends React.Component {
         var location = props.location.query.location;
         if (location && location.length > 0) {
             this.handleSearch(location);
-            window.location.hash = '#/';
+            //window.location.hash = '#/';
         }
         else {
             //load my home city
