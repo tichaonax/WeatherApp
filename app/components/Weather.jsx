@@ -9,13 +9,20 @@ class Weather extends React.Component {
         super(props);
 
         this.state = {
-            location: "Gutu",
-            temperature : 20,
-            isLoading : false,
+            temperature : undefined,
+            isLoading : true,
             errorMessage: undefined
         }
 
         this.handleSearch = this.handleSearch.bind(this);
+    }
+
+    componentDidMount(){
+        this.loadGutuWeather();
+    }
+
+    loadGutuWeather(){
+        this.handleSearch("Gutu");
     }
 
     handleSearch(location) {
