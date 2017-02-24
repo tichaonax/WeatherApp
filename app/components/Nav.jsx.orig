@@ -24,7 +24,11 @@ class Nav extends React.Component {
                 <div className="top-bar-left">
 
                     <ul className="menu">
-                        <li className="menu-text">Weather App</li>
+<<<<<<< HEAD
+                        <li className="menu-text">Weather Appx</li>
+=======
+                        <li className="menu-text cell">Weather Tapp</li>
+>>>>>>> 2380ac18b8f2eceb8ab16fecd0e61650d46b2e08
                         <li>
                             <IndexLink to="/"ç>Get
                                 Weather</IndexLink>
